@@ -42,10 +42,8 @@
         /* Colors for icons */
         .ic-red{background:#fff0f0}.ic-red i{color:#c0392b}
         .ic-blue{background:#eaf4ff}.ic-blue i{color:#1a6bb5}
-        .ic-green{background:#eafaf1}.ic-green i{color:#1a8a4a}
         .ic-orange{background:#fff7e6}.ic-orange i{color:#d68910}
         .ic-purple{background:#f4eeff}.ic-purple i{color:#6c3fc5}
-        .ic-teal{background:#e6f9f9}.ic-teal i{color:#0e7f7f}
         .ic-yellow{background:#fffbe6}.ic-yellow i{color:#b8860b}
         .ic-indigo{background:#eef2ff}.ic-indigo i{color:#3949ab}
         .ic-pink{background:#ffeef5}.ic-pink i{color:#b5195c}
@@ -102,25 +100,15 @@
         .train-info{font-size:0.75rem;color:var(--muted);margin-top:4px}
         .train-status{float:right;font-size:0.7rem;font-weight:700;padding:3px 9px;border-radius:20px}
 
-        .tool-item{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.05);margin-bottom:8px}
-        .tool-icon{width:40px;height:40px;background:#eaf4ff;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .tool-icon i{font-size:20px;color:#1a6bb5}
-        .tool-name{font-size:0.83rem;font-weight:600;color:var(--text)}
-        .tool-code{font-size:0.7rem;color:var(--muted);margin-top:2px}
-        .tool-status{margin-left:auto;font-size:0.68rem;font-weight:700;padding:3px 9px;border-radius:20px;cursor:pointer;border:none}
-
         .save-msg{display:none;background:#eafaf1;border-radius:12px;padding:10px;text-align:center;font-size:0.82rem;color:#1a8a4a;margin-top:10px;font-weight:600}
 
         .forecast-strip{display:flex;justify-content:space-between;font-size:0.75rem;text-align:center;padding-top:4px;gap:8px}
         .forecast-day{flex:1;min-width:0}
 
-        .tool-item > div:not(.tool-icon),
         .contact-item > div:not(.cicon){min-width:0;flex:1}
 
         .train-route,
         .train-info,
-        .tool-name,
-        .tool-code,
         .cname,
         .cnum,
         .alert-text{overflow-wrap:anywhere}
@@ -130,9 +118,7 @@
             .page{padding:14px 12px calc(18px + env(safe-area-inset-bottom,0px))}
             .field-row,
             .weather-grid{grid-template-columns:1fr}
-            .tool-item,
             .contact-item{align-items:flex-start}
-            .tool-status,
             .call-btn{margin-left:0}
             .forecast-strip{overflow-x:auto;justify-content:flex-start;padding-bottom:4px}
             .forecast-day{min-width:72px}
@@ -173,14 +159,6 @@
             <div class="menu-card" onclick="go('risk')">
                 <div class="icon-wrap ic-orange"><i class="ti ti-alert-hexagon"></i></div>
                 <span>А-744 эрсдэлийн үнэлгээ</span>
-            </div>
-            <div class="menu-card" onclick="go('inspection')">
-                <div class="icon-wrap ic-green"><i class="ti ti-route-2"></i></div>
-                <span>Биечилсэн зам шалгалт</span>
-            </div>
-            <div class="menu-card" onclick="go('tools')">
-                <div class="icon-wrap ic-teal"><i class="ti ti-tools"></i></div>
-                <span>Хатуу тооцоот багаж</span>
             </div>
             <div class="menu-card" onclick="go('weather')">
                 <div class="icon-wrap ic-yellow"><i class="ti ti-sun-high"></i></div>
@@ -268,42 +246,6 @@
         </div>
         <button class="btn-primary" onclick="showSaved('risk-save')"><i class="ti ti-device-floppy"></i> Хадгалах</button>
         <div class="save-msg" id="risk-save">✓ Амжилттай хадгалагдлаа</div>
-    </div>
-
-    <!-- Inspection -->
-    <div class="page" id="page-inspection">
-        <div class="inner-header"><h2>Биечилсэн зам шалгалт</h2><p>Шалгалтын тэмдэглэл</p></div>
-        <div class="card">
-            <h3><i class="ti ti-route" style="color:#1a8a4a"></i> Шалгалтын мэдээлэл</h3>
-            <div class="field-row">
-                <div><label>Огноо</label><input type="date" value="2025-05-06"></div>
-                <div><label>Шалгагч</label><input type="text" placeholder="ПД нэр"></div>
-            </div>
-            <div class="field-row">
-                <div><label>Эхлэх цэг (км)</label><input type="text" placeholder="130+000"></div>
-                <div><label>Дуусах цэг (км)</label><input type="text" placeholder="145+000"></div>
-            </div>
-            <label>Рельс төлөв</label>
-            <select><option>Хэвийн</option><option>Элэгдэлтэй</option><option>Гэмтэлтэй</option></select>
-            <label>Шпал төлөв</label>
-            <select><option>Хэвийн</option><option>Гэмтэлтэй</option><option>Солих шаардлагатай</option></select>
-            <label>Тэмдэглэл</label>
-            <textarea placeholder="Шалгалтын дэлгэрэнгүй тайлбар..."></textarea>
-        </div>
-        <button class="btn-primary" onclick="showSaved('insp-save')"><i class="ti ti-check"></i> Шалгалт дуусгах</button>
-        <div class="save-msg" id="insp-save">✓ Шалгалт амжилттай бүртгэгдлээ</div>
-    </div>
-
-    <!-- Tools -->
-    <div class="page" id="page-tools">
-        <div class="inner-header"><h2>Хатуу тооцоот багаж</h2><p>Багажийн бүртгэл ба хяналт</p></div>
-        <div class="tool-item"><div class="tool-icon"><i class="ti ti-ruler"></i></div><div><div class="tool-name">Замын хэмжигч</div><div class="tool-code">БТ-001</div></div><button class="tool-status" style="background:#e5f9ee;color:#1a8a4a" onclick="toggleTool(this,'Авах','Буцаах')">Буцаах</button></div>
-        <div class="tool-item"><div class="tool-icon"><i class="ti ti-angle"></i></div><div><div class="tool-name">Угалзан шалгагч</div><div class="tool-code">БТ-002</div></div><button class="tool-status" style="background:#ffe5e5;color:#c0392b" onclick="toggleTool(this,'Авах','Буцаах')">Авах</button></div>
-        <div class="tool-item"><div class="tool-icon"><i class="ti ti-flame"></i></div><div><div class="tool-name">Гагнуурын аппарат</div><div class="tool-code">БТ-003</div></div><button class="tool-status" style="background:#e5f9ee;color:#1a8a4a" onclick="toggleTool(this,'Авах','Буцаах')">Буцаах</button></div>
-        <div class="tool-item"><div class="tool-icon"><i class="ti ti-hammer"></i></div><div><div class="tool-name">Болт татах гаек</div><div class="tool-code">БТ-004</div></div><button class="tool-status" style="background:#ffe5e5;color:#c0392b" onclick="toggleTool(this,'Авах','Буцаах')">Авах</button></div>
-        <div class="tool-item"><div class="tool-icon"><i class="ti ti-adjustments"></i></div><div><div class="tool-name">Рельсний нивелир</div><div class="tool-code">БТ-005</div></div><button class="tool-status" style="background:#e5f9ee;color:#1a8a4a" onclick="toggleTool(this,'Авах','Буцаах')">Буцаах</button></div>
-        <button class="btn-primary" style="margin-top:12px" onclick="showSaved('tool-save')"><i class="ti ti-plus"></i> Шинэ багаж бүртгэх</button>
-        <div class="save-msg" id="tool-save">✓ Багаж бүртгэгдлээ</div>
     </div>
 
     <!-- Weather -->
@@ -440,21 +382,12 @@
         taskData.push(inp.value.trim()); inp.value = ''; initTasks();
     }
 
-    function toggleTool(btn, labelTake, labelReturn) {
-        var isTake = btn.textContent === labelTake;
-        btn.textContent = isTake ? labelReturn : labelTake;
-        btn.style.background = isTake ? '#e5f9ee' : '#ffe5e5';
-        btn.style.color = isTake ? '#1a8a4a' : '#c0392b';
-    }
-
-    var pages = ['home','defect','schedule','risk','inspection','tools','weather','task','feedback','ai','contacts','safety'];
-    var titles = {home:'Замын 2-р анги',defect:'Зааварилгаа',schedule:'Галт тэрэг',risk:'Эрсдэл',inspection:'Зам шалгалт',tools:'Багаж',weather:'Цаг агаар',task:'Даалгавар',feedback:'Санал',ai:'AI туслах',contacts:'Холбоо',safety:'Аюулгүй'};
+    var pages = ['home','defect','schedule','risk','weather','task','feedback','ai','contacts','safety'];
+    var titles = {home:'Замын 2-р анги',defect:'Зааварилгаа',schedule:'Галт тэрэг',risk:'Эрсдэл',weather:'Цаг агаар',task:'Даалгавар',feedback:'Санал',ai:'AI туслах',contacts:'Холбоо',safety:'Аюулгүй'};
     var menuFileRoutes = {
         defect: 'QRbvrtgel.html',
         schedule: 'GTgrapik.html',
         risk: 'ErsdeliinVnelgee.html',
-        inspection: 'master.html',
-        tools: 'HatuuTootsoot.html',
         weather: 'UdurTutam.html',
         task: 'ItaVvreg.html',
         ai: 'ai.html'
